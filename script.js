@@ -248,9 +248,12 @@ function handleKeydown(event) {
 
   if (key === ' ') {
     event.preventDefault();
-    if (state === 'running') {
+    if (event.repeat) {
+      return;
+    }
+    if (state === 'running' || state === 'paused') {
       pauseGame();
-    } else if (state === 'ready' || state === 'paused' || state === 'over') {
+    } else if (state === 'ready' || state === 'over') {
       if (state === 'over') {
         resetGame();
       }
